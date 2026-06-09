@@ -113,7 +113,8 @@
 <body>
   <div id="stage">
     <video id="player" playsinline preload="auto" poster="cover.jpg">
-      <source src="mv.mp4" type="video/mp4">
+      <!-- Bump ?v= whenever mv.mp4 is replaced to bust browser/CDN cache. -->
+      <source src="mv.mp4?v=20260609" type="video/mp4">
       你的瀏覽器不支援 HTML5 影片播放。
     </video>
   </div>
