@@ -152,6 +152,24 @@
     };
 
     overlay.addEventListener("click", start, { once: true });
+
+    const replayBtn = document.getElementById("replayBtn");
+
+    // Show the replay button every time playback ends (repeatable, no `once`).
+    player.addEventListener("ended", () => {
+      replayBtn.classList.remove("hidden");
+    });
+
+    // Restart from the beginning, stay in fullscreen, hide the button.
+    replayBtn.addEventListener("click", () => {
+      replayBtn.classList.add("hidden");
+      player.currentTime = 0;
+      const p = player.play();
+      if (p && typeof p.catch === "function") {
+        // Playback failed; show the button again so the user can retry.
+        p.catch(() => { replayBtn.classList.remove("hidden"); });
+      }
+    });
   </script>
 </body>
 </html>
